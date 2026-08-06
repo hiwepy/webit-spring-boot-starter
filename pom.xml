@@ -422,6 +422,8 @@
         <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
         <maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>        
          <xfire.version>1.2.6</xfire.version>
+                <webit-script-springmvc3.version>1.5.1</webit-script-springmvc3.version>
+                <webit-script.version>1.5.2</webit-script.version>
     </properties>
 
     <dependencies>
@@ -488,16 +490,32 @@
         <dependency>
             <groupId>com.github.zqq90.webit-script</groupId>
             <artifactId>webit-script</artifactId>
-            <version>1.5.2</version>
+            <version>${webit-script.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.github.zqq90.webit-script/webit-script-springmvc3 -->
         <dependency>
             <groupId>com.github.zqq90.webit-script</groupId>
             <artifactId>webit-script-springmvc3</artifactId>
-            <version>1.5.1</version>
+            <version>${webit-script-springmvc3.version}</version>
         </dependency>
 
 
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.github.zqq90.webit-script</groupId>
+                <artifactId>webit-script</artifactId>
+                <version>${webit-script.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.zqq90.webit-script</groupId>
+                <artifactId>webit-script-springmvc3</artifactId>
+                <version>${webit-script-springmvc3.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 
 </project>
