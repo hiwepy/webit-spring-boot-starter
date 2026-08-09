@@ -33,6 +33,7 @@ import webit.script.support.springmvc3.WebitViewResolver;
 @ConditionalOnClass({ })
 @AutoConfigureAfter(WebMvcAutoConfiguration.class)
 @EnableConfigurationProperties(WebitProperties.class)
+/**\n * Auto-configuration for Webit Script template engine.\n *\n * @author [@Loong Wan](https://github.com/loong10k)\n * @since 1.0.0\n */
 public class WebitAutoConfiguration {
 	
 	private static final Logger logger = LoggerFactory.getLogger(WebitAutoConfiguration.class);

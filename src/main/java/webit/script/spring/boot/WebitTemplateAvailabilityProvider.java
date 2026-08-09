@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.springframework.boot.autoconfigure.template.PathBasedTemplateAvailabilityProvider;
 
+/**\n * Template availability provider for Webit Script templates.\n *\n * @author [@Loong Wan](https://github.com/loong10k)\n * @since 1.0.0\n */
 public class WebitTemplateAvailabilityProvider extends PathBasedTemplateAvailabilityProvider {
 
 	public WebitTemplateAvailabilityProvider() {
