@@ -18,7 +18,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.autoconfigure.template.TemplateLocation;
 import org.springframework.boot.autoconfigure.web.ConditionalOnEnabledResourceChain;
-import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -28,14 +27,17 @@ import org.springframework.web.servlet.resource.ResourceUrlEncodingFilter;
 import webit.script.Engine;
 import webit.script.support.springmvc3.WebitViewResolver;
 
-
+/**
+ * Auto-configuration for Webit Script template engine.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @Configuration
 @ConditionalOnClass({ })
-@AutoConfigureAfter(WebMvcAutoConfiguration.class)
 @EnableConfigurationProperties(WebitProperties.class)
-/**\n * Auto-configuration for Webit Script template engine.\n *\n * @author [@Loong Wan](https://github.com/loong10k)\n * @since 1.0.0\n */
 public class WebitAutoConfiguration {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(WebitAutoConfiguration.class);
 
 	private final ApplicationContext applicationContext;
@@ -63,8 +65,8 @@ public class WebitAutoConfiguration {
 			if (templatePathLocation == null) {
 				logger.warn("Cannot find template location(s): " + locations
 						+ " (please add some templates, "
-						+ "check your Beetl configuration, or set "
-						+ "spring.Beetl.checkTemplateLocation=false)");
+						+ "check your Webit configuration, or set "
+						+ "spring.webit.checkTemplateLocation=false)");
 			}
 		}
 	}
@@ -75,27 +77,15 @@ public class WebitAutoConfiguration {
 		protected WebitProperties properties;
 
 		protected void applyProperties(BeetlConfiguration factory) {
-			/*factory.setTemplateLoaderPaths(this.properties.getTemplateLoaderPath());
-			factory.setPreferFileSystemAccess(this.properties.isPreferFileSystemAccess());
-			factory.setDefaultEncoding(this.properties.getCharsetName());*/
 			Properties settings = new Properties();
 			settings.putAll(this.properties.getSettings());
-			//factory.setFreemarkerSettings(settings);
 		}
 
 	}
-	
+
 	@Configuration
 	@ConditionalOnNotWebApplication
 	public static class BeetlNonWebConfiguration extends BeetlConfiguration {
-
-		/*@Bean
-		@ConditionalOnMissingBean
-		public FreeMarkerConfigurationFactoryBean freeMarkerConfiguration() {
-			FreeMarkerConfigurationFactoryBean freeMarkerFactoryBean = new FreeMarkerConfigurationFactoryBean();
-			applyProperties(freeMarkerFactoryBean);
-			return freeMarkerFactoryBean;
-		}*/
 
 	}
 
@@ -103,7 +93,7 @@ public class WebitAutoConfiguration {
 	@ConditionalOnClass({ Servlet.class, Engine.class })
 	@ConditionalOnWebApplication
 	public static class BeetlWebConfiguration extends BeetlConfiguration {
-		
+
 		@Bean
 		@ConditionalOnMissingBean(name = "beetlViewResolver")
 		@ConditionalOnProperty(name = "spring.beetl.enabled", matchIfMissing = true)
@@ -121,5 +111,5 @@ public class WebitAutoConfiguration {
 		}
 
 	}
-	
+
 }

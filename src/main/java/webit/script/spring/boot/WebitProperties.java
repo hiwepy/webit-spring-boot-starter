@@ -17,9 +17,18 @@ package webit.script.spring.boot;
 
 import java.util.Properties;
 
-import org.springframework.boot.autoconfigure.template.AbstractTemplateViewResolverProperties;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
-public class WebitProperties extends AbstractTemplateViewResolverProperties {
+import webit.script.support.springmvc3.WebitViewResolver;
+
+/**
+ * Configuration properties for Webit Script template engine.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
+@ConfigurationProperties(prefix = "spring.webit")
+public class WebitProperties {
 
 	public static final String DEFAULT_TEMPLATE_LOADER_PATH = "classpath:/templates/";
 
@@ -28,7 +37,7 @@ public class WebitProperties extends AbstractTemplateViewResolverProperties {
 	public static final String DEFAULT_SUFFIX = ".httl";
 
 	/**
-	 * Well-known Beetl keys which will be passed to Beetl's  Configuration.
+	 * Well-known Webit keys which will be passed to Webit's Configuration.
 	 */
 	private Properties settings = new Properties();
 
@@ -42,15 +51,16 @@ public class WebitProperties extends AbstractTemplateViewResolverProperties {
 	 * hot detection of template changes.
 	 */
 	private boolean preferFileSystemAccess = true;
-	
+
 	/**
-	 * 是否自动检查文件是否变动
+	 * Whether to check if the template location exists.
+	 */
+	private boolean checkTemplateLocation = true;
+
+	/**
+	 * Whether auto-check file changes.
 	 */
 	private boolean autoCheck = false;
-
-	public WebitProperties() {
-		super(DEFAULT_PREFIX, DEFAULT_SUFFIX);
-	}
 
 	public Properties getSettings() {
 		return this.settings;
@@ -76,12 +86,29 @@ public class WebitProperties extends AbstractTemplateViewResolverProperties {
 		this.templateLoaderPath = templateLoaderPaths;
 	}
 
+	public boolean isCheckTemplateLocation() {
+		return this.checkTemplateLocation;
+	}
+
+	public void setCheckTemplateLocation(boolean checkTemplateLocation) {
+		this.checkTemplateLocation = checkTemplateLocation;
+	}
+
 	public boolean isAutoCheck() {
 		return autoCheck;
 	}
 
 	public void setAutoCheck(boolean autoCheck) {
 		this.autoCheck = autoCheck;
+	}
+
+	/**
+	 * Apply properties to a {@link WebitViewResolver}.
+	 * @param resolver the view resolver to configure
+	 */
+	public void applyToMvcViewResolver(WebitViewResolver resolver) {
+		resolver.setPrefix(this.DEFAULT_PREFIX);
+		resolver.setSuffix(this.DEFAULT_SUFFIX);
 	}
 
 }
