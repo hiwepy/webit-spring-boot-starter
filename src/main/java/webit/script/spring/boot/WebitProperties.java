@@ -62,42 +62,92 @@ public class WebitProperties {
 	 */
 	private boolean autoCheck = false;
 
+	/**
+	 * Returns the settings.
+	 *
+	 * @return the settings
+	 */
 	public Properties getSettings() {
 		return this.settings;
 	}
 
+	/**
+	 * Sets the settings.
+	 *
+	 * @param settings the settings
+	 */
 	public void setSettings(Properties settings) {
 		this.settings = settings;
 	}
 
+	/**
+	 * Returns the template loader path.
+	 *
+	 * @return the template loader path
+	 */
 	public String[] getTemplateLoaderPath() {
 		return this.templateLoaderPath;
 	}
 
+	/**
+	 * Returns the prefer file system access.
+	 *
+	 * @return the prefer file system access
+	 */
 	public boolean isPreferFileSystemAccess() {
 		return this.preferFileSystemAccess;
 	}
 
+	/**
+	 * Sets the prefer file system access.
+	 *
+	 * @param preferFileSystemAccess the prefer file system access
+	 */
 	public void setPreferFileSystemAccess(boolean preferFileSystemAccess) {
 		this.preferFileSystemAccess = preferFileSystemAccess;
 	}
 
+	/**
+	 * Sets the template loader path.
+	 *
+	 * @param templateLoaderPaths the template loader paths
+	 */
 	public void setTemplateLoaderPath(String... templateLoaderPaths) {
 		this.templateLoaderPath = templateLoaderPaths;
 	}
 
+	/**
+	 * Returns the check template location.
+	 *
+	 * @return the check template location
+	 */
 	public boolean isCheckTemplateLocation() {
 		return this.checkTemplateLocation;
 	}
 
+	/**
+	 * Sets the check template location.
+	 *
+	 * @param checkTemplateLocation the check template location
+	 */
 	public void setCheckTemplateLocation(boolean checkTemplateLocation) {
 		this.checkTemplateLocation = checkTemplateLocation;
 	}
 
+	/**
+	 * Returns the auto check.
+	 *
+	 * @return the auto check
+	 */
 	public boolean isAutoCheck() {
 		return autoCheck;
 	}
 
+	/**
+	 * Sets the auto check.
+	 *
+	 * @param autoCheck the auto check
+	 */
 	public void setAutoCheck(boolean autoCheck) {
 		this.autoCheck = autoCheck;
 	}

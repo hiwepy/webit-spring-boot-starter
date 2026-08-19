@@ -41,10 +41,20 @@ public class WebitTemplateAvailabilityProvider extends PathBasedTemplateAvailabi
 			return this.templateLoaderPath;
 		}
 
+		/**
+		 * Returns the template loader path.
+		 *
+		 * @return the template loader path
+		 */
 		public List<String> getTemplateLoaderPath() {
 			return this.templateLoaderPath;
 		}
 
+		/**
+		 * Sets the template loader path.
+		 *
+		 * @param templateLoaderPath the template loader path
+		 */
 		public void setTemplateLoaderPath(List<String> templateLoaderPath) {
 			this.templateLoaderPath = templateLoaderPath;
 		}

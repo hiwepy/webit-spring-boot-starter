@@ -50,6 +50,10 @@ public class WebitAutoConfiguration {
 	}
 
 	@PostConstruct
+	/**
+	 * check Template Location Exists.
+	 *
+	 */
 	public void checkTemplateLocationExists() {
 		if (this.properties.isCheckTemplateLocation()) {
 			TemplateLocation templatePathLocation = null;
@@ -97,6 +101,11 @@ public class WebitAutoConfiguration {
 		@Bean
 		@ConditionalOnMissingBean(name = "beetlViewResolver")
 		@ConditionalOnProperty(name = "spring.beetl.enabled", matchIfMissing = true)
+		/**
+		 * beetl View Resolver.
+		 *
+		 * @return the result
+		 */
 		public WebitViewResolver beetlViewResolver() {
 			WebitViewResolver resolver = new WebitViewResolver();
 			this.properties.applyToMvcViewResolver(resolver);
@@ -106,6 +115,11 @@ public class WebitAutoConfiguration {
 		@Bean
 		@ConditionalOnMissingBean
 		@ConditionalOnEnabledResourceChain
+		/**
+		 * resource URL Encoding Filter.
+		 *
+		 * @return the result
+		 */
 		public ResourceUrlEncodingFilter resourceUrlEncodingFilter() {
 			return new ResourceUrlEncodingFilter();
 		}
